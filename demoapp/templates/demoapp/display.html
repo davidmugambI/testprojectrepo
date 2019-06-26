@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FIRSTNAME</th>
+                <th>GENDER</th>
+                <th>Image</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for datum in data %}
+
+            <tr>
+                <td>{{ datum.id }}</td>
+                <td>{{ datum.firstname }}</td>
+                <td>{{ datum.gender }}</td>
+                <td><img src="{{ datum.image.url }}" alt="My image" style="width:50px;height:50px"></td>
+                <td>
+                    <a href="{% url 'update' datum.id %}" class="btn-sm btn-info">Update</a>
+                    <a href="{% url 'delete' datum.id %}" class="btn-sm btn-info">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
